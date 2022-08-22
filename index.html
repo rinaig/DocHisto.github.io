@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nahuel Iglesias </title>
+<link rel="stylesheet" href="/custom.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+</head>
+<nav class="bg-light navbar fixed-top bg-opacity-50">
+    <div class="container-fluid">
+      <a class="navbar-brand " href="#">
+        <img src="/media/logoDH_preview_rev_1.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        DocHisto
+      </a>
+    </div>
+  </nav>
+
+
+<body id="bodyLogin" class="body-back" >
+  <!-- SE CREA EL DIV PARA MOSTRAR SOLO EN EL LOGUIN -->
+  <div id="divLoguin">
+  <br>
+<figure>
+    <blockquote class="blockquote sangria" >
+      <h1><p >Bienvenido a DocHisto</p></h1>
+    </blockquote>
+    <h5><em><figcaption class="blockquote-footer sangria">
+      La app que le permite llevar un registro de sus Historias clinicas en forma simple, clara y util
+    </figcaption></em></h5>
+  </figure>
+  <br>
+  <p class="sangria" ><strong>Ingrese su nombre de usuario y contraseña</strong></p>
+
+  <!-- ESTE BOTON SOLO DE MUESTRA SI SE ESTA EN LA OPCION DE CREAR NUEVO USUARIO -->
+  <button type="button" class="btn btn-outline-dark sangria" id="mostrarFormUsuExist">
+
+
+    Usuario Existente
+  </button>
+<!-- SE CREA EL FORMULARIO PARA USUARIOS EXISTENTES EL CUAL SE MUESTRA POR DEFAULT AL CARGA LA PAGINA: -->
+  <form action="" id="form" class="sangria"> 
+    <input type="email"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="nombre@dominio.com" style="width: 300px;" required>
+
+   <input type="password" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="contraseña" style="width: 300px;" required>
+
+  <input class="btn btn-outline-success"type="submit" value="Ingresar">
+  <div id="alertaFailLoguin" class="alert alert-danger" role="alert" style="width: 300px;">
+    <div id="alertaokLoguin" class="alert alert-danger" role="alert" style="width: 300px;"></div>
+    El nombre de usuario o contraseña es incorrecto vuelva a intentarlo. 
+  </div>
+</form>
+
+
+<!-- SE CREA FORMULARIO DE NUEVOS CLIENTES -->
+<p class="sangria" ><strong>Si aun no eres usuario Click Aqui</strong></p>
+
+<!-- ESTE BOTON APARECE POR DEFAULT AL CARGAR LA PAGINA Y SE OCULTA CUANDO QUEREMOS LLENAR UN CLIENTE.  -->
+<button type="button" class="btn btn-outline-dark sangria" id="mostrarForm">
+    Nuevo Usuario
+  </button>
+  
+
+            <!-- NUEVOS USUARIO -->
+            <form action="" id="formUsuNewUsuario" class="sangria"> 
+              <input type="email"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="nombre@dominio.com" style="width: 300px;" required>
+          
+             <input type="password" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="contraseña" style="width: 300px;" required>
+          
+            <input class="btn btn-outline-success"type="submit" value="Ingresar">
+          </form>
+</div>
+
+
+<!-- SE CREAR EL DIV DONDE SE CARGARA TODO EL HTML QUE SOLO SE MOSTRARÁ SIEMPRE Y CUANDO SE HAYA LOGUEADO O CREADO UN NUEVO USUARIO.  -->
+<section id="divSistema">
+  <br>
+  <figure>          
+    <blockquote class="blockquote sangria" > <h1><p>Bienvenido a DocHisto</p></h1> </blockquote> 
+<br>
+    <h5><em><figcaption class="blockquote-footer sangria"> Estamos Trabajando en esta nueva seccion. 
+    </figcaption></em></h5> 
+  </figure>
+</section>
+
+    <script src="app.js"></script>
+   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+
+</html>

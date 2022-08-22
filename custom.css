@@ -1,0 +1,26 @@
+.centerhead{
+    margin-right: auto;
+}
+
+
+.body-back{
+    box-sizing: border-box;
+    background-image: url('/media/Loguin.jpg');
+    background-color: rgba( 245, 194, 84, 0.685);
+    background-size: cover   ;
+
+}
+
+.sangria{
+    margin-left: 25px;
+    margin-right: 0px;
+    margin-top: 30px;
+    margin-bottom: -10px;
+  }
+
+  .sangriaForm{
+    margin-left: 25px;
+    margin-right: 50;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
