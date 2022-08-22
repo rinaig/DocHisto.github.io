@@ -65,11 +65,11 @@ function datosUsuForm(e){
     let datosUsuExistente = e.target
     //obtenemos los datos ingresados e enviados en el evento.
         for(const datos of listaUsuarios){    //recorre el array buscando dentro de datos el nombre de usuario y contraseña
-        if (datos.nomUsuario == datosUsuExistente.children[0].value && datos.datosUsuExistente == datosUsu.children[1].value){// SI AMBAS COINCIDEN INGRESA AL SISTEMA
+        if (datos.nomUsuario == datosUsuExistente.children[0].value && datos.passUsuGuardado == datosUsuExistente.children[1].value){// SI AMBAS COINCIDEN INGRESA AL SISTEMA
                   // LLAMA AL DIV DEL SISTEMA Y LO BORRA
                 let divLoguin = document.getElementById("divLoguin")
                 // REMUEVE EL LINK DONDE SE ENCONTRABA LA INTERFAZ DEL LOGUIN
-                divLoguin.remove()
+                document.getElementById("divLoguin").style.display = "block";
                 logicaSistema() // llama a la logica del sistema
                 }
        

@@ -36,22 +36,20 @@
 
   <!-- ESTE BOTON SOLO DE MUESTRA SI SE ESTA EN LA OPCION DE CREAR NUEVO USUARIO -->
   <button type="button" class="btn btn-outline-dark sangria" id="mostrarFormUsuExist">
-
-
     Usuario Existente
   </button>
+
 <!-- SE CREA EL FORMULARIO PARA USUARIOS EXISTENTES EL CUAL SE MUESTRA POR DEFAULT AL CARGA LA PAGINA: -->
   <form action="" id="form" class="sangria"> 
     <input type="email"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="nombre@dominio.com" style="width: 300px;" required>
-
    <input type="password" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="contraseña" style="width: 300px;" required>
 
   <input class="btn btn-outline-success"type="submit" value="Ingresar">
-  <div id="alertaFailLoguin" class="alert alert-danger" role="alert" style="width: 300px;">
-    <div id="alertaokLoguin" class="alert alert-danger" role="alert" style="width: 300px;"></div>
-    El nombre de usuario o contraseña es incorrecto vuelva a intentarlo. 
-  </div>
 </form>
+<div id="alertaFailLoguin" class="alert alert-danger" role="alert" style="width: 300px;">
+  <div id="alertaokLoguin" class="alert alert-danger" role="alert" style="width: 300px;"></div>
+  El nombre de usuario o contraseña es incorrecto vuelva a intentarlo. 
+</div>
 
 
 <!-- SE CREA FORMULARIO DE NUEVOS CLIENTES -->
@@ -61,9 +59,7 @@
 <button type="button" class="btn btn-outline-dark sangria" id="mostrarForm">
     Nuevo Usuario
   </button>
-  
-
-            <!-- NUEVOS USUARIO -->
+             <!-- NUEVOS USUARIO -->
             <form action="" id="formUsuNewUsuario" class="sangria"> 
               <input type="email"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="nombre@dominio.com" style="width: 300px;" required>
           
