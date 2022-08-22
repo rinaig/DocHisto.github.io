@@ -8,7 +8,7 @@
     background-image: url('media/Loguin.jpg');
     background-color: rgba( 245, 194, 84, 0.685);
     background-size: cover   ;
-
+background-repeat: repeat;
 }
 
 .sangria{
