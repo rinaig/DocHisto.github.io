@@ -82,18 +82,54 @@ function datosUsuForm(e){
         loguinSistema() //Se llama a la funcion loguin para comenzar el mismo. 
 
         ////////////////// Se crea el entorno del sistema
-      
-        
-        
          
         function logicaSistema(){
 
-            
+            // SE OCULTAN FORMULARIOS Y DIV DE LOGUIN DEL SISTEMA
             document.getElementById("divSistema").style.display = "block";
             document.getElementById("divLoguin").style.display = "none";
+            document.getElementById("formNuevoPaciente").style.display = "none";
+            document.getElementById("formAgregarDatosSesion").style.display = "none";
+            document.getElementById("formConsultarDatosPaciente").style.display = "none";
+            document.getElementById("formModificarDatosPaciente").style.display = "none";
 
+///////////////////////////// COMIENZO MUESTRA DE FORMULARIOS CON BOTONERA
+            let botonFormNuevoPaciente =document.getElementById("btnNuevoPaciente") 
+            botonFormNuevoPaciente.addEventListener("click", eventoMostrarFormNuevoPaciente) 
+        function eventoMostrarFormNuevoPaciente(){
+            document.getElementById("formNuevoPaciente").style.display = "Block";
+            document.getElementById("formAgregarDatosSesion").style.display = "none";
+            document.getElementById("formConsultarDatosPaciente").style.display = "none";
+            document.getElementById("formModificarDatosPaciente").style.display = "none";
+        }
 
+        let botonFormAgregarDatosSesion =document.getElementById("btnDatosSesion") 
+        botonFormAgregarDatosSesion.addEventListener("click", eventoMostrarFormAgregarDatosSesion) 
+    function eventoMostrarFormAgregarDatosSesion(){
+        document.getElementById("formNuevoPaciente").style.display = "none";
+        document.getElementById("formAgregarDatosSesion").style.display = "block";
+        document.getElementById("formConsultarDatosPaciente").style.display = "none";
+        document.getElementById("formModificarDatosPaciente").style.display = "none";
+    }
 
+    let botonFormConsultarDatosPaciente =document.getElementById("btnConsultaPaciente") 
+    botonFormConsultarDatosPaciente.addEventListener("click", eventoMostrarFormConsultarDatosPaciente) 
+    function eventoMostrarFormConsultarDatosPaciente(){
+    document.getElementById("formNuevoPaciente").style.display = "none";
+    document.getElementById("formAgregarDatosSesion").style.display = "none";
+    document.getElementById("formConsultarDatosPaciente").style.display = "block";
+    document.getElementById("formModificarDatosPaciente").style.display = "none";
+    }
+
+    let botonFormModificarDatosPaciente =document.getElementById("btnModificarPaciente") 
+    botonFormModificarDatosPaciente.addEventListener("click", eventoMostrarFormModificarDatosPaciente) 
+function eventoMostrarFormModificarDatosPaciente(){
+    document.getElementById("formNuevoPaciente").style.display = "none";
+    document.getElementById("formAgregarDatosSesion").style.display = "none";
+    document.getElementById("formConsultarDatosPaciente").style.display = "none";
+    document.getElementById("formModificarDatosPaciente").style.display = "block";
+}
+/////////////////////////////////////////// FIN MUESTRA DE FORMULARIOS CON BOTONERA
             
     // //Se crean los pacientes existentes con datos ya guardados
     // const paciente1 = {dni: 31288916, nombre: "Nahuel", apellido: "Iglesias", fechNac: ('21/10/1984'), comentariosSesion:"Comentario guardado paciente 2"}
@@ -152,15 +188,16 @@ function datosUsuForm(e){
 
     //     let opcionesSistema = Number(prompt("DOCHISTO \n \nPor favor escoge la opcion: \n \n1. Crear Nuevo Paciente \n2. Consutar Paciente por DNI \n3. Actualizar Datos de Paciente \n4. Para salir del Sistema"))  //Se muestra el Usuario posibilidad de ingresar al sistema mediante un Login o crear un nuevo usuario
         
-
+        
     //     if (opcionesSistema == 1){
     //          crearNuevoPaciente()}
     //     if(opcionesSistema == 2){
     //         consultarPaciente()}
     //     if (opcionesSistema == 3){
     //         agrgarComentariosPaciente()        }
-    //     if (opcionesSistema == 4){
-    //         alert("Gracias por Utilizar DOCHISTO \n \nLo esperamos nuevamente")      }
+    //     else if(opcionesSistema == 4){
+    //         alert("Gracias por Utilizar DOCHISTO \n \nLo esperamos nuevamente")  
+    //     }
     }
 
 

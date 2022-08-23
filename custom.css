@@ -24,3 +24,7 @@ background-repeat: repeat;
     margin-top: 30px;
     margin-bottom: 10px;
   }
+  
+  .custom-tooltip {
+    --bs-tooltip-bg: var(--bs-primary);
+  }

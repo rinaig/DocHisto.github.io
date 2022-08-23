@@ -79,6 +79,46 @@
     <h5><em><figcaption class="blockquote-footer sangria"> Estamos Trabajando en esta nueva seccion. 
     </figcaption></em></h5> 
   </figure>
+
+  <div class="btn-group-vertical sangria" role="group" aria-label="Vertical button group">
+    <button type="button" class="btn btn-outline-dark" id="btnNuevoPaciente">Nuevo Paciente</button>
+    <button type="button" class="btn btn-outline-dark" id="btnDatosSesion">Agregar Datos Sesion</button>
+    <button type="button" class="btn btn-outline-dark"id="btnConsultaPaciente">Consultar Paciente</button>
+    <button type="button" class="btn btn-outline-dark" id="btnModificarPaciente">Modificar Paciente</button>
+  </div>
+
+  <form action="" id="formNuevoPaciente" class="sangria"> 
+    <input type="number" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="DNI" style="width: 300px;" required>
+    <input type="text"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Nombre" style="width: 300px;" required>
+   <input type="text" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="Apellido" style="width: 300px;" required>
+   <input type="date"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Fecha de Nacimiento" style="width: 300px;" required>
+   <input type="text" class="form-control input-group input-group-sm " aria-label="inputGroup-sizing-sm" placeholder="Evolucion" style="width: 300px;" required>
+
+
+  <input class="btn btn-outline-success"type="submit" value="Alta Paciente">
+</form>
+
+<form action="" id="formAgregarDatosSesion" class="sangria"> 
+  <input type="number" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="DNI" style="width: 300px;" required>
+  <input type="date"  class="form-control input-group input-group-sm " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Fecha de Nacimiento" style="width: 300px;" required>
+ <input type="text" class="form-control input-group input-group-sm " aria-label="inputGroup-sizing-sm" placeholder="Evolucion" style="width: 300px;" required>
+
+<input class="btn btn-outline-success"type="submit" value="Confirmar Evolucion">
+</form>
+
+<form action="" id="formConsultarDatosPaciente" class="sangria"> 
+  <input type="number" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="DNI" style="width: 300px;" required>
+
+<input class="btn btn-outline-success"type="submit" value="Consultar Datos paciente">
+</form>
+
+<form action="" id="formModificarDatosPaciente" class="sangria"> 
+  <input type="number" class="form-control input-group input-group-sm" aria-label="inputGroup-sizing-sm" placeholder="DNI" style="width: 300px;" required>
+
+<input class="btn btn-outline-success"type="submit" value="Buscar Datos Paciente">
+<input class="btn btn-outline-success"type="submit" value="grabar Datos Modificados">
+</form>
+
 </section>
 
     <script src="app.js"></script>
