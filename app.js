@@ -1,21 +1,31 @@
  
 function loguinSistema(){ //SE CREA LA FUNCION GENERAL PARA EL LOGUIN DEL SISTEMA
 
-    // NO PERMITE MOSTRAR ALGUNOS ELEMENTOS QUE SE ENCUENTRAN OCULTOS EN EL HTML
+    // No permite mostrar algunos elementos que se encuentran en el HTML
     document.getElementById("divSistema").style.display = "none";
     document.getElementById("alertaFailLoguin").style.display = "none";
     document.getElementById("formUsuNewUsuario").style.display = "none";
     document.getElementById("mostrarFormUsuExist").style.display = "none";
+
  
 
-     //Se definen datos de usuarios existentes dentro del array.
+     //SE DEFINEN LOS USUARIOS EXISTENTES
     const usu1 = {nomUsuario: "licanaliaalarcon@gmail.com", passUsuGuardado: "Callejeros"}
     const usu2 = {nomUsuario: "Alberto5689@mail.com", passUsuGuardado: "PassUsu2"}
     const usu3 = {nomUsuario: "jorge2486@mail.com", passUsuGuardado: "PassUsu3"}
+    //SE  CONVIERTE EN STRING PARA ENVIAR EL USUARIO 1 AL LOCALSTORAGE
+    const convertirEnString = JSON.stringify(usu1)
+    const convertirEnString2 = JSON.stringify(usu2)
+    const convertirEnString3 = JSON.stringify(usu3)
+    //SE ENVIA MENDIANTE UN SET AL LOCAL STORAGE LA INFORMACION INGRESADA
+    localStorage.setItem("usu1", convertirEnString)    
+    localStorage.setItem("usu2", convertirEnString2)
+    localStorage.setItem("usu3", convertirEnString3)
+
     
     const listaUsuarios = [usu1, usu2,usu3];  //la lista de usuarios existentes en el array. 
    
-    ///////MOSTRAR FORMULARIO PARA CREAR NUEVO USUARIO Y ESCONDER EL DE FORMULARIO EXISTENTE
+    ///////mostrar formulario para crear nuevo usuario y esconder el de formulario Existente
     let botonMostrarNewUsuario =document.getElementById("mostrarForm") 
     botonMostrarNewUsuario.addEventListener("click", eventoMostrarNuevoUsuario) 
     function eventoMostrarNuevoUsuario(){
@@ -23,11 +33,10 @@ function loguinSistema(){ //SE CREA LA FUNCION GENERAL PARA EL LOGUIN DEL SISTEM
         document.getElementById("form").style.display = "none";
         document.getElementById("mostrarFormUsuExist").style.display = "Block";
         document.getElementById("mostrarForm").style.display = "none";
-
     }
 
-    ///////MOSTRAR FORMULARIO PARA CREAR NUEVO USUARIO Y ESCONDER EL DE FORMULARIO EXISTENTE
-        let botonMostrarUsuExistente =document.getElementById("mostrarFormUsuExist") 
+    ///////mostrar formulario para crear nuevo usuario y esconder el de formulario nuevo
+        let botonMostrarUsuExistente = document.getElementById("mostrarFormUsuExist") 
         botonMostrarUsuExistente.addEventListener("click", eventoMostrarUsuarioExistente) 
     function eventoMostrarUsuarioExistente(){
         document.getElementById("form").style.display = "block";
@@ -36,17 +45,16 @@ function loguinSistema(){ //SE CREA LA FUNCION GENERAL PARA EL LOGUIN DEL SISTEM
         document.getElementById("mostrarFormUsuExist").style.display = "none";
     }
 
-//SE LLAMA AL FORMULARIO PARA CREAR A UN CLIENTE.
+//se llama al formualario para crear nuevo usuario
 let formularioNuevoUsuario = document.getElementById("formUsuNewUsuario")
 formularioNuevoUsuario.addEventListener('submit', datosNewUsuForm)
 function datosNewUsuForm(e){
-     //CANCELAMOS POR LAS DUDAS
+     //cancelamos con preventDefault
     e.preventDefault();
-    // CAPTURAR LOS DATOS DE LOS INPUT
+    // capturamos los datos del input
     let datosNewUsuCargados = e.target
     //obtenemos los datos ingresados e enviados en el evento.
         for(const datosNewUsu of listaUsuarios){    //recorre el array buscando dentro de datos el nombre de usuario y contraseña     
-       
          listaUsuarios.push({nomUsuario: datosNewUsuCargados.children[0].value, passUsuGuardado: datosNewUsuCargados.children[1].value}) 
          document.getElementById("divLoguin").style.display = "none";
          console.log(listaUsuarios) 
@@ -55,25 +63,21 @@ function datosNewUsuForm(e){
                }      
 }
 
-//SE LLAMA AL FORMULARIO DE LOGUIN DE CLIENTE EXISTENTE
+//se llama al formulario del loguin del cliente existente
 let formulario = document.getElementById("form")
 formulario.addEventListener('submit', datosUsuForm)
 function datosUsuForm(e){
-    //CANCELAMOS POR LAS DUDAS
     e.preventDefault();
-    // CAPTURAR LOS DATOS DE LOS INPUT
     let datosUsuExistente = e.target
     //obtenemos los datos ingresados e enviados en el evento.
         for(const datos of listaUsuarios){    //recorre el array buscando dentro de datos el nombre de usuario y contraseña
         if (datos.nomUsuario == datosUsuExistente.children[0].value && datos.passUsuGuardado == datosUsuExistente.children[1].value){// SI AMBAS COINCIDEN INGRESA AL SISTEMA
-                  // LLAMA AL DIV DEL SISTEMA Y LO BORRA
                 let divLoguin = document.getElementById("divLoguin")
-                // REMUEVE EL LINK DONDE SE ENCONTRABA LA INTERFAZ DEL LOGUIN
                 document.getElementById("divLoguin").style.display = "block";
-                logicaSistema() // llama a la logica del sistema
+                logicaSistema() // si se cumplen los parametros llama a la logica del sistema
                 }
        
-         else{ // SI EL NOMBRE DE USUARIO Y CONTRASEÑA NO COINCIDEN MUESTRA EL ALERT OCULTADO AL PRINCIPIO
+         else{ // si el nombre de usuario o contraseña no coincide muestra una alerta y corta
             document.getElementById("alertaFailLoguin").style.display = "block";
             break;}
         }
@@ -81,55 +85,97 @@ function datosUsuForm(e){
 }
         loguinSistema() //Se llama a la funcion loguin para comenzar el mismo. 
 
-        ////////////////// Se crea el entorno del sistema
+        ////////////////// Se crea el entorno del sistema una vez ingresado
          
         function logicaSistema(){
 
-            // SE OCULTAN FORMULARIOS Y DIV DE LOGUIN DEL SISTEMA
-            document.getElementById("divSistema").style.display = "block";
-            document.getElementById("divLoguin").style.display = "none";
-            document.getElementById("formNuevoPaciente").style.display = "none";
-            document.getElementById("formAgregarDatosSesion").style.display = "none";
-            document.getElementById("formConsultarDatosPaciente").style.display = "none";
-            document.getElementById("formModificarDatosPaciente").style.display = "none";
+               // SE OCULTAN FORMULARIOS Y DIV DE LOGUIN DEL SISTEMA
+               document.getElementById("divSistema").style.display = "block";
+               document.getElementById("divLoguin").style.display = "none";
+               document.getElementById("formNuevoPaciente").style.display = "none";
+               document.getElementById("formAgregarDatosSesion").style.display = "none";
+               document.getElementById("formConsultarDatosPaciente").style.display = "none";
+               document.getElementById("formModificarDatosPaciente").style.display = "none";
+               document.getElementById("mostrarPrecio").style.display = "none";
+               document.getElementById("trabajandoEnSeccion").style.display = "none";
+               
+   
+   ///////////////////////////// COMIENZO MUESTRA DE FORMULARIOS CON BOTONERA DONDE DEPENDIENDO EL BOTON MUESTRA U OCULTA OTROS MENUES
+               let botonFormNuevoPaciente =document.getElementById("btnNuevoPaciente") 
+               botonFormNuevoPaciente.addEventListener("click", eventoMostrarFormNuevoPaciente) 
+           function eventoMostrarFormNuevoPaciente(){
+               document.getElementById("formNuevoPaciente").style.display = "Block";
+               document.getElementById("trabajandoEnSeccion").style.display = "Block";
+               document.getElementById("formAgregarDatosSesion").style.display = "none";
+               document.getElementById("formConsultarDatosPaciente").style.display = "none";
+               document.getElementById("formModificarDatosPaciente").style.display = "none";
+               document.getElementById("mostrarPrecio").style.display = "none";               
+           }
+   
+           let botonFormAgregarDatosSesion =document.getElementById("btnDatosSesion") 
+           botonFormAgregarDatosSesion.addEventListener("click", eventoMostrarFormAgregarDatosSesion) 
+       function eventoMostrarFormAgregarDatosSesion(){
+           document.getElementById("formNuevoPaciente").style.display = "none";
+           document.getElementById("trabajandoEnSeccion").style.display = "Block";
+           document.getElementById("formAgregarDatosSesion").style.display = "block";
+           document.getElementById("formConsultarDatosPaciente").style.display = "none";
+           document.getElementById("formModificarDatosPaciente").style.display = "none";
+           document.getElementById("mostrarPrecio").style.display = "none";
+           
+       }
+   
+       let botonFormConsultarDatosPaciente =document.getElementById("btnConsultaPaciente") 
+       botonFormConsultarDatosPaciente.addEventListener("click", eventoMostrarFormConsultarDatosPaciente) 
+       function eventoMostrarFormConsultarDatosPaciente(){
+       document.getElementById("formNuevoPaciente").style.display = "none";
+       document.getElementById("trabajandoEnSeccion").style.display = "Block";
+       document.getElementById("formAgregarDatosSesion").style.display = "none";
+       document.getElementById("formConsultarDatosPaciente").style.display = "block";
+       document.getElementById("formModificarDatosPaciente").style.display = "none";
+       document.getElementById("mostrarPrecio").style.display = "none";
+       }
+   
+       let botonFormModificarDatosPaciente =document.getElementById("btnModificarPaciente") 
+       botonFormModificarDatosPaciente.addEventListener("click", eventoMostrarFormModificarDatosPaciente) 
+   function eventoMostrarFormModificarDatosPaciente(){
+       document.getElementById("formNuevoPaciente").style.display = "none";
+       document.getElementById("trabajandoEnSeccion").style.display = "Block";
+       document.getElementById("formAgregarDatosSesion").style.display = "none";
+       document.getElementById("formConsultarDatosPaciente").style.display = "none";
+       document.getElementById("formModificarDatosPaciente").style.display = "block";
+       document.getElementById("mostrarPrecio").style.display = "none";
+       
+       }
 
-///////////////////////////// COMIENZO MUESTRA DE FORMULARIOS CON BOTONERA
-            let botonFormNuevoPaciente =document.getElementById("btnNuevoPaciente") 
-            botonFormNuevoPaciente.addEventListener("click", eventoMostrarFormNuevoPaciente) 
-        function eventoMostrarFormNuevoPaciente(){
-            document.getElementById("formNuevoPaciente").style.display = "Block";
-            document.getElementById("formAgregarDatosSesion").style.display = "none";
-            document.getElementById("formConsultarDatosPaciente").style.display = "none";
-            document.getElementById("formModificarDatosPaciente").style.display = "none";
-        }
+////////////    SE CREAN LOS VALORES POR SESION DENTRO DEL LOCAL STORAGE
+       localStorage.setItem('valorOctubre', 1500)
+       localStorage.setItem('valorNoviembre', 2000)
+       localStorage.setItem('valorDiciembre', 2300)
 
-        let botonFormAgregarDatosSesion =document.getElementById("btnDatosSesion") 
-        botonFormAgregarDatosSesion.addEventListener("click", eventoMostrarFormAgregarDatosSesion) 
-    function eventoMostrarFormAgregarDatosSesion(){
-        document.getElementById("formNuevoPaciente").style.display = "none";
-        document.getElementById("formAgregarDatosSesion").style.display = "block";
-        document.getElementById("formConsultarDatosPaciente").style.display = "none";
-        document.getElementById("formModificarDatosPaciente").style.display = "none";
+       let botonFormValorDeSesion =document.getElementById("btnValorConsultas") 
+       botonFormValorDeSesion.addEventListener("click", eventoMostrarFormValorDeSesion) 
+   function eventoMostrarFormValorDeSesion(){
+       document.getElementById("formNuevoPaciente").style.display = "none";
+       document.getElementById("trabajandoEnSeccion").style.display = "none";
+       document.getElementById("formAgregarDatosSesion").style.display = "none";
+       document.getElementById("formConsultarDatosPaciente").style.display = "none";
+       document.getElementById("formModificarDatosPaciente").style.display = "none";
+       document.getElementById("mostrarPrecio").style.display = "block";
+
+       let mostrarPrecioDOM = document.getElementById('mostrarPrecio')
+       //SE CREA LA FUNCION DONDE MOSTRARA LOS VALORES POR SESION CUANDO SE SELECCIONE DICHO BOTON. 
+       const mostrarPrecio = () =>{
+        mostrarPrecioDOM.innerHTML = `
+            <h3></h3>
+            <p><strong>Octubre: </strong>$ ${ localStorage.getItem('valorOctubre')}</p>
+            <p><strong>Noviembre: </strong>$ ${ localStorage.getItem('valorNoviembre')}</p>
+            <p><strong>Diciembre: </strong>$ ${ localStorage.getItem('valorDiciembre')}</p>`
     }
+    mostrarPrecio()
+     }
 
-    let botonFormConsultarDatosPaciente =document.getElementById("btnConsultaPaciente") 
-    botonFormConsultarDatosPaciente.addEventListener("click", eventoMostrarFormConsultarDatosPaciente) 
-    function eventoMostrarFormConsultarDatosPaciente(){
-    document.getElementById("formNuevoPaciente").style.display = "none";
-    document.getElementById("formAgregarDatosSesion").style.display = "none";
-    document.getElementById("formConsultarDatosPaciente").style.display = "block";
-    document.getElementById("formModificarDatosPaciente").style.display = "none";
-    }
-
-    let botonFormModificarDatosPaciente =document.getElementById("btnModificarPaciente") 
-    botonFormModificarDatosPaciente.addEventListener("click", eventoMostrarFormModificarDatosPaciente) 
-function eventoMostrarFormModificarDatosPaciente(){
-    document.getElementById("formNuevoPaciente").style.display = "none";
-    document.getElementById("formAgregarDatosSesion").style.display = "none";
-    document.getElementById("formConsultarDatosPaciente").style.display = "none";
-    document.getElementById("formModificarDatosPaciente").style.display = "block";
-}
-/////////////////////////////////////////// FIN MUESTRA DE FORMULARIOS CON BOTONERA
+    
+//////////////////////////////////CODIGO ANTERIOR CON PROMT Y ALERTS DONDE SE PUEDEN CREAR O BUSCAR PACIENTES DENTRO DE UN ARRAY EL MISMO NO SE IMPLEMENTA AUN YA QUE LA IDEA ES DEJAR EL PROYECTO EN PRODCCION PERO VINCULARLO CON BASES DE DATOS: SI SE DESCOMENTA CORRE CORRECTAMENTE. 
             
     // //Se crean los pacientes existentes con datos ya guardados
     // const paciente1 = {dni: 31288916, nombre: "Nahuel", apellido: "Iglesias", fechNac: ('21/10/1984'), comentariosSesion:"Comentario guardado paciente 2"}
