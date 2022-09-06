@@ -3,7 +3,6 @@ function loguinSistema(){ //SE CREA LA FUNCION GENERAL PARA EL LOGUIN DEL SISTEM
 
     // No permite mostrar algunos elementos que se encuentran en el HTML
     document.getElementById("divSistema").style.display = "none";
-    document.getElementById("alertaFailLoguin").style.display = "none";
     document.getElementById("formUsuNewUsuario").style.display = "none";
     document.getElementById("mostrarFormUsuExist").style.display = "none";
 
@@ -11,19 +10,10 @@ function loguinSistema(){ //SE CREA LA FUNCION GENERAL PARA EL LOGUIN DEL SISTEM
 
      //SE DEFINEN LOS USUARIOS EXISTENTES
     const usu1 = {nomUsuario: "licanaliaalarcon@gmail.com", passUsuGuardado: "Callejeros"}
-    const usu2 = {nomUsuario: "Alberto5689@mail.com", passUsuGuardado: "PassUsu2"}
+    const usu2 = {nomUsuario: "alberto5689@mail.com", passUsuGuardado: "PassUsu2"}
     const usu3 = {nomUsuario: "jorge2486@mail.com", passUsuGuardado: "PassUsu3"}
-    //SE  CONVIERTE EN STRING PARA ENVIAR EL USUARIO 1 AL LOCALSTORAGE
-    const convertirEnString = JSON.stringify(usu1)
-    const convertirEnString2 = JSON.stringify(usu2)
-    const convertirEnString3 = JSON.stringify(usu3)
-    //SE ENVIA MENDIANTE UN SET AL LOCAL STORAGE LA INFORMACION INGRESADA
-    localStorage.setItem("usu1", convertirEnString)    
-    localStorage.setItem("usu2", convertirEnString2)
-    localStorage.setItem("usu3", convertirEnString3)
-
     
-    const listaUsuarios = [usu1, usu2,usu3];  //la lista de usuarios existentes en el array. 
+    const listaUsuarios = [usu1,usu2,usu3];  //la lista de usuarios existentes en el array. 
    
     ///////mostrar formulario para crear nuevo usuario y esconder el de formulario Existente
     let botonMostrarNewUsuario =document.getElementById("mostrarForm") 
@@ -74,11 +64,23 @@ function datosUsuForm(e){
         if (datos.nomUsuario == datosUsuExistente.children[0].value && datos.passUsuGuardado == datosUsuExistente.children[1].value){// SI AMBAS COINCIDEN INGRESA AL SISTEMA
                 let divLoguin = document.getElementById("divLoguin")
                 document.getElementById("divLoguin").style.display = "block";
-                logicaSistema() // si se cumplen los parametros llama a la logica del sistema
+                logicaSistema(); break;
+
+                // si se cumplen los parametros llama a la logica del sistema
                 }
-       
-         else{ // si el nombre de usuario o contraseña no coincide muestra una alerta y corta
-            document.getElementById("alertaFailLoguin").style.display = "block";
+         else{ // SI EL USUARIO O CONTRASEÑA ES INCORRECTO MUESTRA UNA ALERTA Y CORTA
+            Toastify({
+                text: "Vuelva a Intentar Datos de Usuario o Pass Incorrectos",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #A52A2A, #D2691E)",
+                  },
+            }).showToast()
             break;}
         }
 }
@@ -88,7 +90,8 @@ function datosUsuForm(e){
         ////////////////// Se crea el entorno del sistema una vez ingresado
          
         function logicaSistema(){
-
+            // MUESTRA MENSAJE DE BIENVENIDA AL SISTEMA
+            swal("Bienvenido", "Ha iniciado sesion correctamente", "success");
                // SE OCULTAN FORMULARIOS Y DIV DE LOGUIN DEL SISTEMA
                document.getElementById("divSistema").style.display = "block";
                document.getElementById("divLoguin").style.display = "none";
@@ -147,10 +150,18 @@ function datosUsuForm(e){
        
        }
 
-////////////    SE CREAN LOS VALORES POR SESION DENTRO DEL LOCAL STORAGE
-       localStorage.setItem('valorOctubre', 1500)
-       localStorage.setItem('valorNoviembre', 2000)
-       localStorage.setItem('valorDiciembre', 2300)
+//////////////// SE CREA UNA VARIABLE SIN ESTRUCTURAR DONDE ESTAN LOS PRECIOS DE LAS SESIONES
+const precios = {
+    octubre: 1500,
+    noviembre: 2000,
+    diciembre: 2300,
+}
+/////////////////SE DESTRUCTURAN LOS PRECIOS DE LAS SESIONES
+const {octubre,noviembre, diciembre} = precios
+////////////   LOS VALORES DE LAS SESIONES DESESTRUCTURAROS SE MANDAN AL LOCAL STORAGE
+       localStorage.setItem('valorOctubre', octubre)
+       localStorage.setItem('valorNoviembre', noviembre)
+       localStorage.setItem('valorDiciembre', diciembre)
 
        let botonFormValorDeSesion =document.getElementById("btnValorConsultas") 
        botonFormValorDeSesion.addEventListener("click", eventoMostrarFormValorDeSesion) 
@@ -163,7 +174,7 @@ function datosUsuForm(e){
        document.getElementById("mostrarPrecio").style.display = "block";
 
        let mostrarPrecioDOM = document.getElementById('mostrarPrecio')
-       //SE CREA LA FUNCION DONDE MOSTRARA LOS VALORES POR SESION CUANDO SE SELECCIONE DICHO BOTON. 
+       //se crea la funcion donde se mostraran los valores por sesion cuando se seleccione dicho boton. 
        const mostrarPrecio = () =>{
         mostrarPrecioDOM.innerHTML = `
             <h3></h3>
