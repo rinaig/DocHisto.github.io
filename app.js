@@ -10,10 +10,9 @@ function loguinSistema(){ //SE CREA LA FUNCION GENERAL PARA EL LOGUIN DEL SISTEM
 
      //SE DEFINEN LOS USUARIOS EXISTENTES
     const usu1 = {nomUsuario: "licanaliaalarcon@gmail.com", passUsuGuardado: "Callejeros"}
-    const usu2 = {nomUsuario: "alberto5689@mail.com", passUsuGuardado: "PassUsu2"}
-    const usu3 = {nomUsuario: "jorge2486@mail.com", passUsuGuardado: "PassUsu3"}
+
     
-    const listaUsuarios = [usu1,usu2,usu3];  //la lista de usuarios existentes en el array. 
+    const listaUsuarios = [usu1];  //la lista de usuarios existentes en el array. 
    
     ///////mostrar formulario para crear nuevo usuario y esconder el de formulario Existente
     let botonMostrarNewUsuario =document.getElementById("mostrarForm") 
@@ -78,7 +77,7 @@ function datosUsuForm(e){
                 position: "center", // `left`, `center` or `right`
                 stopOnFocus: true, // Prevents dismissing of toast on hover
                 style: {
-                    background: "linear-gradient(to right, #A52A2A, #D2691E)",
+                    background: "linear-gradient(to right, #970D1A, #4E204D)",
                   },
             }).showToast()
             break;}
@@ -101,6 +100,7 @@ function datosUsuForm(e){
                document.getElementById("formModificarDatosPaciente").style.display = "none";
                document.getElementById("mostrarPrecio").style.display = "none";
                document.getElementById("trabajandoEnSeccion").style.display = "none";
+               document.getElementById("listaPsiquiatras").style.display = "none";
                
    
    ///////////////////////////// COMIENZO MUESTRA DE FORMULARIOS CON BOTONERA DONDE DEPENDIENDO EL BOTON MUESTRA U OCULTA OTROS MENUES
@@ -112,7 +112,8 @@ function datosUsuForm(e){
                document.getElementById("formAgregarDatosSesion").style.display = "none";
                document.getElementById("formConsultarDatosPaciente").style.display = "none";
                document.getElementById("formModificarDatosPaciente").style.display = "none";
-               document.getElementById("mostrarPrecio").style.display = "none";               
+               document.getElementById("mostrarPrecio").style.display = "none";     
+               document.getElementById("listaPsiquiatras").style.display = "none";          
            }
    
            let botonFormAgregarDatosSesion =document.getElementById("btnDatosSesion") 
@@ -124,6 +125,7 @@ function datosUsuForm(e){
            document.getElementById("formConsultarDatosPaciente").style.display = "none";
            document.getElementById("formModificarDatosPaciente").style.display = "none";
            document.getElementById("mostrarPrecio").style.display = "none";
+           document.getElementById("listaPsiquiatras").style.display = "none";
            
        }
    
@@ -136,6 +138,7 @@ function datosUsuForm(e){
        document.getElementById("formConsultarDatosPaciente").style.display = "block";
        document.getElementById("formModificarDatosPaciente").style.display = "none";
        document.getElementById("mostrarPrecio").style.display = "none";
+       document.getElementById("listaPsiquiatras").style.display = "none";
        }
    
        let botonFormModificarDatosPaciente =document.getElementById("btnModificarPaciente") 
@@ -147,8 +150,37 @@ function datosUsuForm(e){
        document.getElementById("formConsultarDatosPaciente").style.display = "none";
        document.getElementById("formModificarDatosPaciente").style.display = "block";
        document.getElementById("mostrarPrecio").style.display = "none";
-       
+       document.getElementById("listaPsiquiatras").style.display = "none";
        }
+
+       let botonMostrarListaDePacientes =document.getElementById("btnListaPsiquiatras") 
+       botonMostrarListaDePacientes.addEventListener("click", eventoMostrarListaDePacientes) 
+   function eventoMostrarListaDePacientes(){
+       document.getElementById("formNuevoPaciente").style.display = "none";
+       document.getElementById("trabajandoEnSeccion").style.display = "none";
+       document.getElementById("formAgregarDatosSesion").style.display = "none";
+       document.getElementById("formConsultarDatosPaciente").style.display = "none";
+       document.getElementById("formModificarDatosPaciente").style.display = "none";
+       document.getElementById("mostrarPrecio").style.display = "none";
+       document.getElementById("listaPsiquiatras").style.display = "block";
+
+
+    ///////////SE CREA BUSQUEDA DE UNA API PARA BUSCAR DATOS DE PSIQUIATRAS EN CASO DE DERIVACION; PODRIA SER LA API DE UNA CARTILLA DE UNA PREPAGA.
+       const listaPsi = document.getElementById("listaPsiquiatras")
+       fetch('https://jsonplaceholder.typicode.com/users')
+           .then((res) =>res.json())
+           .then((datosPsiquiatras) => datosPsiquiatras.forEach((infoPsiquiat) =>{
+               const li = document.createElement('li')
+               li.innerHTML = `
+               <h6><strong><u>Nombre:</u></strong>  ${infoPsiquiat.name}</h6>
+               <p><strong>Email: </strong>${infoPsiquiat.email}</p>
+               <p><strong>Direccion:  </strong> ${infoPsiquiat.address.street} ${infoPsiquiat.address.suite} </p>
+               <p><strong>Telefono:  </strong>  ${infoPsiquiat.phone}</p>
+               `
+               listaPsi.append(li)
+           }))
+       }
+
 
 //////////////// SE CREA UNA VARIABLE SIN ESTRUCTURAR DONDE ESTAN LOS PRECIOS DE LAS SESIONES
 const precios = {
@@ -172,6 +204,7 @@ const {octubre,noviembre, diciembre} = precios
        document.getElementById("formConsultarDatosPaciente").style.display = "none";
        document.getElementById("formModificarDatosPaciente").style.display = "none";
        document.getElementById("mostrarPrecio").style.display = "block";
+       document.getElementById("listaPsiquiatras").style.display = "none";
 
        let mostrarPrecioDOM = document.getElementById('mostrarPrecio')
        //se crea la funcion donde se mostraran los valores por sesion cuando se seleccione dicho boton. 
@@ -186,7 +219,7 @@ const {octubre,noviembre, diciembre} = precios
      }
 
     
-//////////////////////////////////CODIGO ANTERIOR CON PROMT Y ALERTS DONDE SE PUEDEN CREAR O BUSCAR PACIENTES DENTRO DE UN ARRAY EL MISMO NO SE IMPLEMENTA AUN YA QUE LA IDEA ES DEJAR EL PROYECTO EN PRODCCION PERO VINCULARLO CON BASES DE DATOS: SI SE DESCOMENTA CORRE CORRECTAMENTE. 
+//////////////////////////////////CODIGO ANTERIOR CON PROMT Y ALERTS DONDE SE PUEDEN CREAR O BUSCAR PACIENTES DENTRO DE UN ARRAY EL MISMO NO SE IMPLEMENTA AUN YA QUE LA IDEA ES DEJAR EL PROYECTO EN PRODUCCION PERO VINCULARLO CON BASES DE DATOS: SI SE DESCOMENTA CORRE CORRECTAMENTE. 
             
     // //Se crean los pacientes existentes con datos ya guardados
     // const paciente1 = {dni: 31288916, nombre: "Nahuel", apellido: "Iglesias", fechNac: ('21/10/1984'), comentariosSesion:"Comentario guardado paciente 2"}
